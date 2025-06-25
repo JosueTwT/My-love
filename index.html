@@ -96,7 +96,6 @@
     }
   }
 
-  /* Animacion Pintura mejorada */
   .paint-container {
     width: 120px;
     height: 120px;
@@ -147,7 +146,6 @@
     50% { transform: scale(1.4) rotate(180deg); opacity: 1; }
   }
 
-  /* Animacion Sol mejorada */
   .sun-container {
     width: 120px;
     height: 120px;
@@ -211,7 +209,6 @@
     100% { transform: rotate(360deg); }
   }
 
-  /* Estrella amarilla animada mejorada */
   .star {
     width: 80px;
     height: 80px;
@@ -248,7 +245,6 @@
     100% { transform: rotate(360deg); }
   }
 
-  /* Sonrisa mejorada */
   .smile {
     width: 100px;
     height: 60px;
@@ -290,7 +286,6 @@
     95% { opacity: 0.3; }
   }
 
-  /* Universo 3D mejorado */
   .universe3d {
     width: 120px;
     height: 120px;
@@ -347,7 +342,6 @@
     50% { transform: scale(1.2); }
   }
 
-  /* Persona mejorada */
   .person {
     width: 80px;
     height: 120px;
@@ -389,7 +383,6 @@
     50% { transform: rotate(30deg); }
   }
 
-  /* Flores mejoradas - blanco y negro con una morada */
   .flowers-container {
     display: flex;
     justify-content: center;
@@ -460,7 +453,6 @@
     50% { box-shadow: 0 0 25px rgba(155, 89, 182, 1); }
   }
 
-  /* Animación de Batería Recargándose Mejorada */
   .motivation-ray {
     width: 80px;
     height: 120px;
@@ -486,12 +478,12 @@
 
   .battery-level {
     width: 100%;
-    background-color: #f00; /* Start with red */
+    background-color: #f00;
     border-radius: 7px;
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 20%; /* Initial charge level */
+    height: 20%;
     animation: batteryCharge 5s ease-in-out infinite;
     transition: background-color 1s ease;
   }
@@ -499,8 +491,8 @@
   @keyframes batteryCharge {
     0% { height: 20%; background-color: #f00; }
     80% { height: 95%; background-color: #0f0; }
-    90% { height: 95%; background-color: #0f0; } /* Pause at full */
-    100% { height: 20%; background-color: #f00; } /* Reset */
+    90% { height: 95%; background-color: #0f0; }
+    100% { height: 20%; background-color: #f00; }
   }
 
   .charging-spark {
@@ -515,7 +507,6 @@
     animation: moveUpSpark 1s ease-out infinite;
   }
 
-  /* Ajustar los valores de --spark-offset para posicionar las chispas */
   .charging-spark:nth-child(1) { --spark-offset: 10%; animation-delay: 0.2s; width: 4px; height: 4px; }
   .charging-spark:nth-child(2) { --spark-offset: 40%; animation-delay: 0.5s; width: 6px; height: 6px; }
   .charging-spark:nth-child(3) { --spark-offset: 70%; animation-delay: 0.8s; width: 3px; height: 3px; }
@@ -525,9 +516,8 @@
     100% { transform: translateY(-80px); opacity: 0; }
   }
 
-  /* Ojos café claro con brillo */
   .anime-eye-container {
-    width: 150px; /* Larger container for a single eye */
+    width: 150px;
     height: 100px;
     display: flex;
     justify-content: center;
@@ -536,25 +526,25 @@
   }
 
   .anime-eye {
-    width: 90px; /* Slightly larger eye */
+    width: 90px;
     height: 90px;
     background: radial-gradient(circle at 50% 50%,
-                #f0f0f0 0%, /* White highlight */
-                #a0522d 20%, /* Lighter brown */
-                #8b4513 40%, /* Medium brown */
-                #6b330a 70%, /* Darker brown */
-                #3a1a05 100% /* Darkest edge */
-                ); /* Complex radial gradient for iris */
+                #f0f0f0 0%,
+                #a0522d 20%,
+                #8b4513 40%,
+                #6b330a 70%,
+                #3a1a05 100%
+                );
     border-radius: 50%;
     position: relative;
-    overflow: hidden; /* To contain the pupil and reflections */
-    box-shadow: 0 0 25px rgba(139, 69, 19, 0.7); /* Stronger shadow */
-    animation: animeEyeBlink 3s ease-in-out infinite; /* Faster blink cycle */
+    overflow: hidden;
+    box-shadow: 0 0 25px rgba(139, 69, 19, 0.7);
+    animation: animeEyeBlink 3s ease-in-out infinite;
   }
 
-  .anime-eye::before { /* Pupil */
+  .anime-eye::before {
     content: '';
-    width: 35px; /* Slightly larger pupil */
+    width: 35px;
     height: 35px;
     background: #000;
     border-radius: 50%;
@@ -565,39 +555,39 @@
     z-index: 1;
   }
 
-  .anime-eye::after { /* Main light reflection */
+  .anime-eye::after {
     content: '';
-    width: 30px; /* Larger reflection */
+    width: 30px;
     height: 30px;
     background: radial-gradient(circle, #ffffff 50%, rgba(255,255,255,0.7));
     border-radius: 50%;
     position: absolute;
-    top: 10px; /* Moved slightly up */
-    left: 10px; /* Moved slightly left */
-    filter: blur(0.8px); /* Slightly less blur for sharper look */
+    top: 10px;
+    left: 10px;
+    filter: blur(0.8px);
     z-index: 2;
-    animation: sparkleMove 3s ease-in-out infinite; /* Faster twinkle */
+    animation: sparkleMove 3s ease-in-out infinite;
   }
 
-  .anime-eye .small-sparkle { /* Secondary smaller reflection - now more distinct */
+  .anime-eye .small-sparkle {
     width: 12px;
     height: 12px;
     background: radial-gradient(circle, #ffffff 50%, rgba(255,255,255,0.5));
     border-radius: 50%;
     position: absolute;
-    top: 45px; /* Adjusted position */
-    left: 65px; /* Adjusted position */
+    top: 45px;
+    left: 65px;
     filter: blur(0.3px);
     z-index: 2;
-    animation: sparkleMoveSmall 2.5s ease-in-out infinite reverse; /* Faster twinkle */
+    animation: sparkleMoveSmall 2.5s ease-in-out infinite reverse;
   }
   
   @keyframes animeEyeBlink {
-    0%, 95%, 100% { /* Blink duration and timing */
+    0%, 95%, 100% {
       transform: scaleY(1); 
       box-shadow: 0 0 25px rgba(139, 69, 19, 0.7);
     }
-    97.5% { /* Quick full blink */
+    97.5% {
       transform: scaleY(0.05); 
       box-shadow: 0 0 5px rgba(139, 69, 19, 0.3);
     }
@@ -608,9 +598,9 @@
       transform: translate(0, 0) scale(1);
       opacity: 1; 
     }
-    25% { transform: translate(3px, 3px) scale(1.05); } /* Smaller shift */
+    25% { transform: translate(3px, 3px) scale(1.05); }
     50% { 
-      transform: translate(0, -3px) scale(1.1); /* Smaller shift */
+      transform: translate(0, -3px) scale(1.1);
       opacity: 0.9;
     }
     75% { transform: translate(-3px, 3px) scale(1.05); }
@@ -627,11 +617,10 @@
     }
   }
 
-  /* Texto final mejorado */
   .final-text {
     max-width: 90%;
     margin: 3em auto 2em auto;
-    font-size: 1.4em;
+    font-size: 1.2em; /* Reduced font size here */
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 240, 245, 0.9));
     color: #2c3e50;
     padding: 2.5em 3em;
