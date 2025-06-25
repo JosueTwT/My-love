@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Te Amo</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap');
+
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: #000;
+    color: #fff;
+    overflow-x: hidden;
+    transition: background 1.5s ease, color 1s ease;
+  }
+
+  .container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, #000000, #1a001a);
+    animation: bgGradient 15s ease infinite;
+    background-size: 400% 400%;
+  }
+
+  @keyframes bgGradient {
+    0%,100% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+  }
+
+  #startButton {
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+    border: none;
+    padding: 1.2em 2.5em;
+    font-size: 2.5em;
+    color: white;
+    border-radius: 2em;
+    cursor: pointer;
+    box-shadow: 0 0 30px #ff69b4aa;
+    font-family: 'Pacifico', cursive;
+    transition: all 0.4s ease;
+  }
+  #startButton:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 40px #ff69b4;
+  }
+
+  .content {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding: 5vh 2em;
+    background: linear-gradient(to bottom, #fff0f5, #ffe4e1);
+    color: #333;
+  }
+
+  .text-section {
+    max-width: 90%;
+    margin: 3em 0;
+    text-align: center;
+    font-size: 2em;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 1.8em 2em;
+    border-radius: 2em;
+    box-shadow: 0 0 25px rgba(0,0,0,0.15);
+    animation: fadeSlideIn 1.5s ease forwards;
+    opacity: 0;
+    transform: translateY(40px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .text-section:nth-child(1) { animation-delay: 0.2s;}
+  .text-section:nth-child(2) { animation-delay: 0.6s;}
+  .text-section:nth-child(3) { animation-delay: 1s;}
+  .text-section:nth-child(4) { animation-delay: 1.4s;}
+  .text-section:nth-child(5) { animation-delay: 1.8s;}
+  .text-section:nth-child(6) { animation-delay: 2.2s;}
+  .text-section:nth-child(7) { animation-delay: 2.6s;}
+  .text-section:nth-child(8) { animation-delay: 3s;}
+  .text-section:nth-child(9) { animation-delay: 3.4s;}
+  .text-section:nth-child(10) { animation-delay: 3.8s;}
+
+  @keyframes fadeSlideIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Animacion Pintura mejorada */
+  .paint-container {
+    width: 120px;
+    height: 120px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .paint-splotch {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #ff6f91, #ff9068);
+    animation: paintPulse 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 8px #ff6f91);
+  }
+  .splotch1 {
+    width: 35px; height: 35px;
+    top: 15px; left: 30px;
+    animation-delay: 0s;
+    background: linear-gradient(45deg, #ff6b96, #f093fb);
+  }
+  .splotch2 {
+    width: 28px; height: 28px;
+    top: 55px; left: 15px;
+    animation-delay: 0.5s;
+    background: linear-gradient(45deg, #ffeaa7, #fab1a0);
+  }
+  .splotch3 {
+    width: 22px; height: 22px;
+    top: 70px; left: 65px;
+    animation-delay: 1s;
+    background: linear-gradient(45deg, #a29bfe, #fd79a8);
+  }
+  .splotch4 {
+    width: 30px; height: 30px;
+    top: 25px; left: 70px;
+    animation-delay: 1.5s;
+    background: linear-gradient(45deg, #00cec9, #55a3ff);
+  }
+  .splotch5 {
+    width: 18px; height: 18px;
+    top: 45px; left: 45px;
+    animation-delay: 2s;
+    background: linear-gradient(45deg, #fdcb6e, #e17055);
+  }
+  @keyframes paintPulse {
+    0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+    50% { transform: scale(1.4) rotate(180deg); opacity: 1; }
+  }
+
+  /* Animacion Sol mejorada */
+  .sun-container {
+    width: 120px;
+    height: 120px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .sun-core {
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, #ffd93b, #ffb347);
+    border-radius: 50%;
+    box-shadow: 0 0 30px #ffe066, 0 0 60px #ffd93b;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    animation: sunGlow 3s ease-in-out infinite;
+  }
+  .sun-rays {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    animation: sunRotate 8s linear infinite;
+  }
+  .sun-ray {
+    width: 4px;
+    height: 30px;
+    background: linear-gradient(to bottom, #ffe066, transparent);
+    position: absolute;
+    top: 10px;
+    left: 58px;
+    border-radius: 2px;
+    transform-origin: center 50px;
+  }
+  .sun-ray:nth-child(1) { transform: rotate(0deg); }
+  .sun-ray:nth-child(2) { transform: rotate(30deg); }
+  .sun-ray:nth-child(3) { transform: rotate(60deg); }
+  .sun-ray:nth-child(4) { transform: rotate(90deg); }
+  .sun-ray:nth-child(5) { transform: rotate(120deg); }
+  .sun-ray:nth-child(6) { transform: rotate(150deg); }
+  .sun-ray:nth-child(7) { transform: rotate(180deg); }
+  .sun-ray:nth-child(8) { transform: rotate(210deg); }
+  .sun-ray:nth-child(9) { transform: rotate(240deg); }
+  .sun-ray:nth-child(10) { transform: rotate(270deg); }
+  .sun-ray:nth-child(11) { transform: rotate(300deg); }
+  .sun-ray:nth-child(12) { transform: rotate(330deg); }
+
+  @keyframes sunGlow {
+    0%,100% {
+      box-shadow: 0 0 30px #ffe066, 0 0 60px #ffd93b;
+      transform: scale(1);
+    }
+    50% {
+      box-shadow: 0 0 50px #fff48f, 0 0 80px #ffe066;
+      transform: scale(1.1);
+    }
+  }
+  @keyframes sunRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Estrella amarilla animada mejorada */
+  .star {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(45deg, #f1c40f, #f39c12);
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    animation: starFloat 4s ease-in-out infinite, starTwinkle 2s ease-in-out infinite;
+    box-shadow: 0 0 30px #f1c40f, 0 0 50px #f39c12;
+    position: relative;
+  }
+  .star::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(45deg, #f1c40f, #f39c12);
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    opacity: 0.3;
+    animation: starRotate 6s linear infinite reverse;
+    z-index: -1;
+  }
+
+  @keyframes starFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(180deg); }
+  }
+  @keyframes starTwinkle {
+    0%, 100% { opacity: 1; box-shadow: 0 0 30px #f1c40f, 0 0 50px #f39c12; }
+    50% { opacity: 0.7; box-shadow: 0 0 50px #f1c40f, 0 0 80px #f39c12; }
+  }
+  @keyframes starRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Sonrisa mejorada */
+  .smile {
+    width: 100px;
+    height: 60px;
+    position: relative;
+    margin: 0 auto;
+  }
+  .smile svg {
+    width: 100px;
+    height: 60px;
+    fill: none;
+    stroke: #e74c3c;
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 5px #e74c3c);
+  }
+  .smile-face {
+    animation: smileDraw 3s ease forwards;
+  }
+  .smile-eyes {
+    animation: eyesBlink 4s ease-in-out infinite;
+  }
+  @keyframes smileDraw {
+    0% {
+      stroke-dasharray: 120;
+      stroke-dashoffset: 120;
+    }
+    70% {
+      stroke-dasharray: 120;
+      stroke-dashoffset: 0;
+    }
+    100% {
+      stroke-dasharray: 120;
+      stroke-dashoffset: 0;
+    }
+  }
+  @keyframes eyesBlink {
+    0%, 90%, 100% { opacity: 1; }
+    95% { opacity: 0.3; }
+  }
+
+  /* Universo 3D mejorado */
+  .universe3d {
+    width: 120px;
+    height: 120px;
+    position: relative;
+    perspective: 800px;
+  }
+  .orbit {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #9b59b6;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    animation: orbitRotate 8s linear infinite;
+    transform-style: preserve-3d;
+    box-shadow: 0 0 20px rgba(155, 89, 182, 0.5);
+  }
+  .orbit2 {
+    width: 80px;
+    height: 80px;
+    border: 2px solid #3498db;
+    top: 20px;
+    left: 20px;
+    animation: orbitRotate 12s linear infinite reverse;
+    box-shadow: 0 0 15px rgba(52, 152, 219, 0.5);
+  }
+  .planet {
+    width: 25px;
+    height: 25px;
+    background: radial-gradient(circle at 30% 30%, #e74c3c, #c0392b);
+    border-radius: 50%;
+    position: absolute;
+    top: 37px;
+    left: 75px;
+    box-shadow: 0 0 15px #e74c3c;
+    animation: planetPulse 3s ease-in-out infinite;
+  }
+  .planet2 {
+    width: 18px;
+    height: 18px;
+    background: radial-gradient(circle at 30% 30%, #f39c12, #e67e22);
+    top: 31px;
+    left: 62px;
+    box-shadow: 0 0 10px #f39c12;
+    animation: planetPulse 4s ease-in-out infinite;
+  }
+  @keyframes orbitRotate {
+    from { transform: rotateY(0deg) rotateX(15deg); }
+    to { transform: rotateY(360deg) rotateX(15deg); }
+  }
+  @keyframes planetPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+
+  /* Persona mejorada */
+  .person {
+    width: 80px;
+    height: 120px;
+    position: relative;
+    background: linear-gradient(to bottom, #fce4ec, #f8bbd9);
+    border-radius: 40% 40% 20% 20% / 60% 60% 20% 20%;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    animation: personWave 3s ease-in-out infinite;
+  }
+  .person::before {
+    content: '';
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle at 30% 30%, #f8bbd0, #f48fb1);
+    border-radius: 50%;
+    position: absolute;
+    top: -35px;
+    left: 15px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  }
+  .person::after {
+    content: '';
+    width: 20px;
+    height: 40px;
+    background: linear-gradient(to bottom, #fce4ec, #f8bbd9);
+    border-radius: 50% 50% 20% 20%;
+    position: absolute;
+    top: 30px;
+    right: -15px;
+    animation: armWave 2s ease-in-out infinite;
+    transform-origin: top center;
+  }
+  @keyframes personWave {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  @keyframes armWave {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(30deg); }
+  }
+
+  /* Flores mejoradas - blanco y negro con una morada */
+  .flowers-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+  
+  .flower-improved {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    animation: flowerGrow 4s ease-in-out infinite;
+  }
+  
+  .flower-petal {
+    width: 20px;
+    height: 35px;
+    background: linear-gradient(45deg, #666, #333);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    position: absolute;
+    top: 12px;
+    left: 20px;
+    transform-origin: center bottom;
+    box-shadow: 0 0 5px rgba(102, 102, 102, 0.3);
+  }
+  
+  .flower-improved.special .flower-petal {
+    background: linear-gradient(45deg, #9b59b6, #663399);
+    box-shadow: 0 0 15px rgba(155, 89, 182, 0.8);
+    animation: purpleGlow 2s ease-in-out infinite;
+  }
+  
+  .flower-petal:nth-child(1) { transform: rotate(0deg); }
+  .flower-petal:nth-child(2) { transform: rotate(72deg); }
+  .flower-petal:nth-child(3) { transform: rotate(144deg); }
+  .flower-petal:nth-child(4) { transform: rotate(216deg); }
+  .flower-petal:nth-child(5) { transform: rotate(288deg); }
+  
+  .flower-center {
+    width: 16px;
+    height: 16px;
+    background: radial-gradient(circle, #ddd, #999);
+    border-radius: 50%;
+    position: absolute;
+    top: 22px;
+    left: 22px;
+    animation: centerPulse 2s ease-in-out infinite;
+  }
+  
+  .flower-improved.special .flower-center {
+    background: radial-gradient(circle, #fff, #ffc107);
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.8);
+  }
+  
+  @keyframes flowerGrow {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.05) rotate(5deg); }
+  }
+  
+  @keyframes centerPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+  }
+  
+  @keyframes purpleGlow {
+    0%, 100% { box-shadow: 0 0 15px rgba(155, 89, 182, 0.8); }
+    50% { box-shadow: 0 0 25px rgba(155, 89, 182, 1); }
+  }
+
+  /* Animación de Batería Recargándose Mejorada */
+  .motivation-ray {
+    width: 80px;
+    height: 120px;
+    border: 3px solid #888;
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    overflow: hidden;
+    background-color: #eee;
+  }
+
+  .battery-top {
+    position: absolute;
+    top: -10px;
+    left: calc(50% - 15px);
+    width: 30px;
+    height: 10px;
+    background-color: #888;
+    border-radius: 3px 3px 0 0;
+  }
+
+  .battery-level {
+    width: 100%;
+    background-color: #f00; /* Start with red */
+    border-radius: 7px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 20%; /* Initial charge level */
+    animation: batteryCharge 5s ease-in-out infinite;
+    transition: background-color 1s ease;
+  }
+
+  @keyframes batteryCharge {
+    0% { height: 20%; background-color: #f00; }
+    80% { height: 95%; background-color: #0f0; }
+    90% { height: 95%; background-color: #0f0; } /* Pause at full */
+    100% { height: 20%; background-color: #f00; } /* Reset */
+  }
+
+  .charging-spark {
+    width: 5px;
+    height: 5px;
+    background-color: #00ff00;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 10%;
+    left: calc(10% + var(--spark-offset));
+    opacity: 0;
+    animation: moveUpSpark 1s ease-out infinite;
+  }
+
+  /* Ajustar los valores de --spark-offset para posicionar las chispas */
+  .charging-spark:nth-child(1) { --spark-offset: 10%; animation-delay: 0.2s; width: 4px; height: 4px; }
+  .charging-spark:nth-child(2) { --spark-offset: 40%; animation-delay: 0.5s; width: 6px; height: 6px; }
+  .charging-spark:nth-child(3) { --spark-offset: 70%; animation-delay: 0.8s; width: 3px; height: 3px; }
+
+  @keyframes moveUpSpark {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-80px); opacity: 0; }
+  }
+
+  /* Ojos café claro con brillo */
+  .anime-eye-container {
+    width: 150px; /* Larger container for a single eye */
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .anime-eye {
+    width: 90px; /* Slightly larger eye */
+    height: 90px;
+    background: radial-gradient(circle at 50% 50%,
+                #f0f0f0 0%, /* White highlight */
+                #a0522d 20%, /* Lighter brown */
+                #8b4513 40%, /* Medium brown */
+                #6b330a 70%, /* Darker brown */
+                #3a1a05 100% /* Darkest edge */
+                ); /* Complex radial gradient for iris */
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden; /* To contain the pupil and reflections */
+    box-shadow: 0 0 25px rgba(139, 69, 19, 0.7); /* Stronger shadow */
+    animation: animeEyeBlink 3s ease-in-out infinite; /* Faster blink cycle */
+  }
+
+  .anime-eye::before { /* Pupil */
+    content: '';
+    width: 35px; /* Slightly larger pupil */
+    height: 35px;
+    background: #000;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+
+  .anime-eye::after { /* Main light reflection */
+    content: '';
+    width: 30px; /* Larger reflection */
+    height: 30px;
+    background: radial-gradient(circle, #ffffff 50%, rgba(255,255,255,0.7));
+    border-radius: 50%;
+    position: absolute;
+    top: 10px; /* Moved slightly up */
+    left: 10px; /* Moved slightly left */
+    filter: blur(0.8px); /* Slightly less blur for sharper look */
+    z-index: 2;
+    animation: sparkleMove 3s ease-in-out infinite; /* Faster twinkle */
+  }
+
+  .anime-eye .small-sparkle { /* Secondary smaller reflection - now more distinct */
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(circle, #ffffff 50%, rgba(255,255,255,0.5));
+    border-radius: 50%;
+    position: absolute;
+    top: 45px; /* Adjusted position */
+    left: 65px; /* Adjusted position */
+    filter: blur(0.3px);
+    z-index: 2;
+    animation: sparkleMoveSmall 2.5s ease-in-out infinite reverse; /* Faster twinkle */
+  }
+  
+  @keyframes animeEyeBlink {
+    0%, 95%, 100% { /* Blink duration and timing */
+      transform: scaleY(1); 
+      box-shadow: 0 0 25px rgba(139, 69, 19, 0.7);
+    }
+    97.5% { /* Quick full blink */
+      transform: scaleY(0.05); 
+      box-shadow: 0 0 5px rgba(139, 69, 19, 0.3);
+    }
+  }
+  
+  @keyframes sparkleMove {
+    0%, 100% { 
+      transform: translate(0, 0) scale(1);
+      opacity: 1; 
+    }
+    25% { transform: translate(3px, 3px) scale(1.05); } /* Smaller shift */
+    50% { 
+      transform: translate(0, -3px) scale(1.1); /* Smaller shift */
+      opacity: 0.9;
+    }
+    75% { transform: translate(-3px, 3px) scale(1.05); }
+  }
+
+  @keyframes sparkleMoveSmall {
+    0%, 100% { 
+      transform: translate(0, 0) scale(1);
+      opacity: 0.9; 
+    }
+    50% { 
+      transform: translate(2px, -2px) scale(1.1); 
+      opacity: 1;
+    }
+  }
+
+  /* Texto final mejorado */
+  .final-text {
+    max-width: 90%;
+    margin: 3em auto 2em auto;
+    font-size: 1.4em;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 240, 245, 0.9));
+    color: #2c3e50;
+    padding: 2.5em 3em;
+    border-radius: 2.5em;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15), 0 0 0 1px rgba(255,255,255,0.8);
+    line-height: 1.6;
+    text-align: justify;
+    position: relative;
+    overflow: hidden;
+    animation: finalTextGlow 8s ease-in-out infinite;
+  }
+  
+  .final-text::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,182,193,0.1), transparent);
+    animation: shimmer 6s ease-in-out infinite;
+    pointer-events: none;
+  }
+  
+  .final-text::after {
+    content: '💖';
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 2em;
+    animation: heartBeat 2s ease-in-out infinite;
+  }
+  
+  @keyframes finalTextGlow {
+    0%, 100% { 
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15), 0 0 0 1px rgba(255,255,255,0.8);
+    }
+    50% { 
+      box-shadow: 0 15px 50px rgba(255,182,193,0.3), 0 0 0 1px rgba(255,182,193,0.5);
+    }
+  }
+  
+  @keyframes shimmer {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+  }
+  
+  @keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+</style>
+</head>
+<body>
+
+  <div class="container" id="intro">
+    <button id="startButton">Te Amo</button>
+  </div>
+
+  <div class="content" id="content">
+
+    <div class="text-section" style="animation-delay: 0.2s;">
+      <div>Eres el color en mi vida</div>
+      <div class="paint-container">
+        <div class="paint-splotch splotch1"></div>
+        <div class="paint-splotch splotch2"></div>
+        <div class="paint-splotch splotch3"></div>
+        <div class="paint-splotch splotch4"></div>
+        <div class="paint-splotch splotch5"></div>
+      </div>
+    </div>
+
+    <div class="text-section" style="animation-delay: 0.6s;">
+      <div>Eres la luz que ilumina mis días oscuros</div>
+      <div class="sun-container">
+        <div class="sun-core"></div>
+        <div class="sun-rays">
+          <div class="sun-ray"></div>
+          <div class="sun-ray"></div>
+          <div class="sun-ray"></div>
+          <div class="sun-ray"></div>
+          <div class="sun-ray"></div>
+          <div class="sun-ray"></div>
+          <div class="sun-ray"></div>
+          <div class="sun-ray"></div>
+          <div class="sun-ray"></div>
+          <div class="sun-ray"></div>
+          <div class="sun-ray"></div>
+          <div class="sun-ray"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-section" style="animation-delay: 1s;">
+      <div>Eres la estrella que me guía cuando estoy perdido</div>
+      <div class="star"></div>
+    </div>
+
+    <div class="text-section" style="animation-delay: 1.4s;">
+      <div>Eres la razón de mis sonrisas</div>
+      <div class="smile">
+        <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg" aria-label="Sonrisa" role="img">
+          <path class="smile-face" d="M15 30 Q50 55 85 30" />
+          <circle class="smile-eyes" cx="30" cy="25" r="4" fill="#e74c3c" />
+          <circle class="smile-eyes" cx="70" cy="25" r="4" fill="#e74c3c" />
+        </svg>
+      </div>
+    </div>
+
+    <div class="text-section" style="animation-delay: 1.8s;">
+      <div>Eres mi universo entero</div>
+      <div class="universe3d">
+        <div class="orbit">
+          <div class="planet"></div>
+        </div>
+        <div class="orbit orbit2">
+          <div class="planet planet2"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-section" style="animation-delay: 2.2s;">
+      <div>Eres mi persona favorita</div>
+      <div class="person"></div>
+    </div>
+
+    <div class="text-section" style="animation-delay: 2.6s;">
+      <div>Eres única</div>
+      <div class="flowers-container">
+        <div class="flower-improved" style="animation-delay: 0s;">
+          <div class="flower-petal"></div>
+          <div class="flower-petal"></div>
+          <div class="flower-petal"></div>
+          <div class="flower-petal"></div>
+          <div class="flower-petal"></div>
+          <div class="flower-center"></div>
+        </div>
+        <div class="flower-improved" style="animation-delay: 0.3s;">
+          <div class="flower-petal"></div>
+          <div class="flower-petal"></div>
+          <div class="flower-petal"></div>
+          <div class="flower-petal"></div>
+          <div class="flower-petal"></div>
+          <div class="flower-center"></div>
+        </div>
+        <div class="flower-improved special" style="animation-delay: 0.6s;">
+          <div class="flower-petal"></div>
+          <div class="flower-petal"></div>
+          <div class="flower-petal"></div>
+          <div class="flower-petal"></div>
+          <div class="flower-petal"></div>
+          <div class="flower-center"></div>
+        </div>
+        <div class="flower-improved" style="animation-delay: 0.9s;">
+          <div class="flower-petal"></div>
+          <div class="flower-petal"></div>
+          <div class="flower-petal"></div>
+          <div class="flower-petal"></div>
+          <div class="flower-petal"></div>
+          <div class="flower-center"></div>
+        </div>
+        <div class="flower-improved" style="animation-delay: 1.2s;">
+          <div class="flower-petal"></div>
+          <div class="flower-petal"></div>
+          <div class="flower-petal"></div>
+          <div class="flower-petal"></div>
+          <div class="flower-petal"></div>
+          <div class="flower-center"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-section" style="animation-delay: 3s;">
+      <div>Eres quien me da ánimos cuando nadie más puede</div>
+      <div class="motivation-ray">
+        <div class="battery-top"></div>
+        <div class="battery-level"></div>
+        <div class="charging-spark" style="--spark-offset: 10%;"></div>
+        <div class="charging-spark" style="--spark-offset: 40%;"></div>
+        <div class="charging-spark" style="--spark-offset: 70%;"></div>
+      </div>
+    </div>
+
+    <div class="text-section" style="animation-delay: 3.4s;">
+      <div>Eres quien le devolvió el brillo a mis ojos</div>
+      <div class="anime-eye-container">
+        <div class="anime-eye">
+          <div class="small-sparkle"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-section" style="animation-delay: 3.8s;">
+      Eres y serás la mejor persona que ha aparecido en mi vida, y aprecio eso, llegaste como si nada y entraste a mi vida, quien diría que el hecho de que yo me quedara ese día ahí afuera, haya sido el inicio de lo que hoy en día puedo decir que son los mejores momentos de mi vida, y son los mejores momentos de mi vida porque tú estás en ellos, porque tú formas parte de ellos y eso es lo que los vuelve tan especiales, que estés tú en ellos, y tú eres muy especial, eres muy única, no hay comparación, así que nunca te compares con nadie más, porque nadie te llega ni a los pies, nadie puede ni podrá igualarte, porque nadie es como tú, y yo te amo a ti, únicamente a ti y así será por el resto de mis días de vida, amo que estés en mi vida, amo que seas parte de ella, amo que seas tú, eres magnífica, eres demasiado perfecta, eres muy linda no solo de apariencia sino también de sentimientos, de tu forma de ser, tu forma de ser es una forma muy linda, amo tu voz, tus ojos, tu pelo, tus cachetes, tu sonrisa, tu risa, tus manos, todo en ti lo amo, te amo a ti, nunca olvides eso, porque yo nunca olvidaré lo mucho que te amo y lo muy feliz que me haces, te amo.
+    </div>
+
+  </div>
+
+<script>
+  const startButton = document.getElementById('startButton');
+  const intro = document.getElementById('intro');
+  const content = document.getElementById('content');
+
+  startButton.addEventListener('click', () => {
+    intro.style.display = 'none';
+    content.style.display = 'flex';
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  });
+</script>
+
+</body>
+</html>
